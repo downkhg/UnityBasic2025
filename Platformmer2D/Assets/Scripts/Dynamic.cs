@@ -30,7 +30,8 @@ public class Dynamic : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 vOrigin = this.transform.position;
-        RaycastHit2D raycastHit = Physics2D.Raycast(vOrigin, Vector3.down, rayDist, jumpLayer);
+        RaycastHit2D raycastHit = 
+            Physics2D.Raycast(vOrigin, Vector3.down, rayDist, jumpLayer);
 
         if (raycastHit)
         {
