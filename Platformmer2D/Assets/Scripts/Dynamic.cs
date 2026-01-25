@@ -18,10 +18,31 @@ public class Dynamic : MonoBehaviour
 
     Rigidbody2D rigidbody;
 
+    public LayerMask jumpLayer;
+    public float rayDist = 0.2f;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 vOrigin = this.transform.position;
+        RaycastHit2D raycastHit = Physics2D.Raycast(vOrigin, Vector3.down, rayDist, jumpLayer);
+
+        if (raycastHit)
+        {
+            Debug.Log("hit:"+raycastHit.collider.gameObject.name);
+            isJump = false;
+            Debug.DrawLine(vOrigin, vOrigin + Vector3.down * rayDist, Color.red);
+        }
+        else
+        {
+            isJump = true;
+            Debug.DrawLine(vOrigin, vOrigin + Vector3.down * rayDist, Color.blue);
+        }
     }
 
     // Update is called once per frame
