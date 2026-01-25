@@ -11,22 +11,84 @@ public class Eagle : MonoBehaviour
     public GameObject objPatrolPoint;
     public bool isMove;
 
+    public enum E_AI_STATE { TRACKING, RETRUN, PATROL };
+    public E_AI_STATE curAIState;
+
+    void SetAIState(E_AI_STATE state)
+    {
+        switch(state)
+        {
+            case E_AI_STATE.TRACKING:
+                break;
+            case E_AI_STATE.RETRUN:
+                objTarget = objResponPoint;
+                break;
+            case E_AI_STATE.PATROL:
+                break;
+        }
+        curAIState = state;
+    }
+
+    void UpdateAIState()
+    {
+        switch (curAIState)
+        {
+            case E_AI_STATE.TRACKING:
+                if (objTarget == null)
+                    SetAIState(E_AI_STATE.RETRUN);
+                break;
+            case E_AI_STATE.RETRUN:
+                if(isMove == false)
+                    SetAIState(E_AI_STATE.PATROL);
+                break;
+            case E_AI_STATE.PATROL:
+                UpdatePatrol(objResponPoint, objPatrolPoint);
+                break;
+        }
+    }
+
     public void UpdatePatrol(GameObject objA, GameObject objB)
     {
-        if(objTarget.name == objA.name)
+        if (isMove == false)
         {
-            if (isMove == false)
+            if (objTarget.name == objA.name)
+            {
                 objTarget = objB;
-        }
-        else if(objTarget.name == objB.name)
-        {
-            if (isMove == false)
+            }
+            else if (objTarget.name == objB.name)
+            {
                 objTarget = objA;
+            }
         }
+    }
+
+    private void Start()
+    {
+        SetAIState(curAIState);
     }
 
     // Update is called once per frame
     void Update()
+    {
+        UpdataMove();
+
+        UpdateAIState();
+    }
+
+    private void FixedUpdate()
+    {
+        if (UpdateFindTargetLayer())
+            SetAIState(E_AI_STATE.TRACKING);
+        //UpdateFindTargetLayerAll();
+        
+    }
+
+    void SetReturn()
+    {
+        objTarget = objResponPoint;
+    }
+
+    void UpdataMove()
     {
         if (objTarget)
         {
@@ -44,20 +106,9 @@ public class Eagle : MonoBehaviour
             else
                 isMove = false;
         }
-
-        UpdatePatrol(objResponPoint, objPatrolPoint);
     }
 
-    private void FixedUpdate()
-    {
-        //UpdateFindTargetLayer();
-        UpdateFindTargetLayerAll();
-
-        if (objTarget == null)
-            objTarget = objResponPoint;
-    }
-
-    void UpdateFindTargetLayer()
+    bool UpdateFindTargetLayer()
     {
         int nLayer = 1 << LayerMask.NameToLayer("Player");
         Collider2D collider = 
@@ -67,7 +118,9 @@ public class Eagle : MonoBehaviour
         {
             objTarget = collider.gameObject;
             Debug.Log("FindTarget:" + collider.gameObject.name);
+            return true;
         }
+        return false;
     }
 
     void UpdateFindTargetLayerAll()
@@ -92,9 +145,9 @@ public class Eagle : MonoBehaviour
         Gizmos.DrawWireSphere(this.transform.position, Site);
     }
 
-//    p rivate void OnTriggerEnter2D(Collider2D collision)
-//    {
-//        if(collision.gameObject.tag == "Player")
-//            objTarget = collision.gameObject;
-//    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+            objTarget = collision.gameObject;
+    }
 }
