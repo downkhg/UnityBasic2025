@@ -238,6 +238,10 @@ MonoBehaviour:
   Score: 0
   gun: {fileID: 1222952119788483206}
   dir: {x: 1, y: 0, z: 0}
+  jumpLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  rayDist: 0.2
 --- !u!70 &1222952120909994356
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -7,15 +7,21 @@ public class Gun : MonoBehaviour
     public GameObject objBullet;
     public Transform trMozzle;
     public float ShotPower;
+    public int nBulletCount = 5;
 
     public void Shot(Vector3 dir, Player player)
     {
-        GameObject objCopyBullet = Instantiate(objBullet);
-        objCopyBullet.transform.position = trMozzle.position;
-        Rigidbody2D rigidbody = objCopyBullet.GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(dir * ShotPower);
-        Bullet bullet = objCopyBullet.GetComponent<Bullet>();
-        bullet.master = player;
+        if (nBulletCount > 0)
+        {
+            GameObject objCopyBullet = Instantiate(objBullet);
+            objCopyBullet.transform.position = trMozzle.position;
+            Rigidbody2D rigidbody = objCopyBullet.GetComponent<Rigidbody2D>();
+            rigidbody.AddForce(dir * ShotPower);
+            Bullet bullet = objCopyBullet.GetComponent<Bullet>();
+            bullet.master = player;
+            bullet.gun = this;
+            nBulletCount--;
+        }
     }
 
     // Start is called before the first frame update
