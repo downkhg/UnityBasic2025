@@ -79,7 +79,7 @@ public class Dynamic : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.X))
-            gun.Shot(dir);
+            gun.Shot(dir, GetComponent<Player>());
 
         if (Input.GetKey(KeyCode.DownArrow))
             transform.position += Vector3.down * Speed * Time.deltaTime;

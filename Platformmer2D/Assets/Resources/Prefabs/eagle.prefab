@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5451512641011667751}
   - component: {fileID: 5451512641011667750}
   - component: {fileID: 391734122645731316}
+  - component: {fileID: 3021074303133365562}
   m_Layer: 9
   m_Name: eagle
   m_TagString: Monster
@@ -134,3 +135,17 @@ MonoBehaviour:
   nHP: 100
   nDemage: 10
   nDebugIdx: 2
+--- !u!114 &3021074303133365562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451512641011667738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd353d09d9e7d1a438aac51727f2825c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUes: 0
+  Time: 1
