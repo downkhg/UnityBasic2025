@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 780169951}
   - component: {fileID: 780169950}
   - component: {fileID: 780169952}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2185,7 +2185,7 @@ GameObject:
   - component: {fileID: 1984761372}
   - component: {fileID: 1984761374}
   - component: {fileID: 1984761375}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2631,12 +2631,12 @@ PrefabInstance:
     - target: {fileID: 4348012148336220704, guid: 6bad111a75f32a0409d9224835b8b606,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.227
+      value: 2.63
       objectReference: {fileID: 0}
     - target: {fileID: 4348012148336220704, guid: 6bad111a75f32a0409d9224835b8b606,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.904
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 4348012148336220704, guid: 6bad111a75f32a0409d9224835b8b606,
         type: 3}
@@ -2687,6 +2687,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: opossum
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348012148336220710, guid: 6bad111a75f32a0409d9224835b8b606,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bad111a75f32a0409d9224835b8b606, type: 3}
@@ -2777,6 +2782,11 @@ PrefabInstance:
       propertyPath: objPatrolPoint
       value: 
       objectReference: {fileID: 1006249758}
+    - target: {fileID: 5451512641011667751, guid: 206579e1990214c4897d1efadc509d13,
+        type: 3}
+      propertyPath: curAIState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5451512641011667750, guid: 206579e1990214c4897d1efadc509d13, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 206579e1990214c4897d1efadc509d13, type: 3}

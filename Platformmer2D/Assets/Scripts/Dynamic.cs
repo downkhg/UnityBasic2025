@@ -115,7 +115,7 @@ public class Dynamic : MonoBehaviour
     //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("OnTriggerEnter2D:"+collision.name);
+        //Debug.Log("OnTriggerEnter2D:"+collision.name);
         if(collision.gameObject.tag == "Lodder")
         {
             isLodder = true;
@@ -126,7 +126,7 @@ public class Dynamic : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("OnTriggerEnter2D:" + collision.name);
+        //Debug.Log("OnTriggerEnter2D:" + collision.name);
         if (collision.gameObject.tag == "Lodder")
         {
             isLodder = false;
