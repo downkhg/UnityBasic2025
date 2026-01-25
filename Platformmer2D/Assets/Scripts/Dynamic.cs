@@ -9,16 +9,19 @@ public class Dynamic : MonoBehaviour
     public bool isJump;
 
     public bool isLodder;
+    public bool isTakeLodder;
 
     public int Score;
 
     public Gun gun;
     public Vector3 dir = Vector3.right;
 
+    Rigidbody2D rigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -41,16 +44,26 @@ public class Dynamic : MonoBehaviour
 
         if (isLodder)
         {
-            //위아래로 움직이도록 만들기
-            if(Input.GetKey(KeyCode.UpArrow))
+            if (isTakeLodder)
             {
-                transform.position += Vector3.up * Speed * Time.deltaTime;
-                GetComponent<Rigidbody2D>().gravityScale = 0;
+                //위아래로 움직이도록 만들기
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    transform.position += Vector3.up * Speed * Time.deltaTime;
+                }
+
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    transform.position += Vector3.down * Speed * Time.deltaTime;
+                }
             }
-         
-            if (Input.GetKey(KeyCode.DownArrow))
+
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                transform.position += Vector3.down * Speed * Time.deltaTime;
+                Debug.Log("Input.GetKeyDown(KeyCode.UpArrow)");
+                rigidbody.velocity = Vector2.zero;
+                rigidbody.gravityScale = 0;
+                isTakeLodder = true;
             }
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -71,8 +84,8 @@ public class Dynamic : MonoBehaviour
         if (Input.GetKey(KeyCode.DownArrow))
             transform.position += Vector3.down * Speed * Time.deltaTime;
 
-        if (GameManager.GetInstance().DeathZoneY > this.transform.position.y)
-            Destroy(this.gameObject);
+        //if (GameManager.GetInstance().DeathZoneY > this.transform.position.y)
+        //    Destroy(this.gameObject);
     }
 
     private void OnGUI()
@@ -106,8 +119,8 @@ public class Dynamic : MonoBehaviour
         if(collision.gameObject.tag == "Lodder")
         {
             isLodder = true;
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;//기존속도제거
-            GetComponent<Rigidbody2D>().gravityScale = 0;
+            rigidbody.velocity = Vector2.zero;//기존속도제거
+            //GetComponent<Rigidbody2D>().gravityScale = 0;
         }
     }
 
@@ -117,8 +130,9 @@ public class Dynamic : MonoBehaviour
         if (collision.gameObject.tag == "Lodder")
         {
             isLodder = false;
-            GetComponent<Rigidbody2D>().gravityScale = 1;
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;//기존속도제거
+            isTakeLodder = false;
+            rigidbody.gravityScale = 1;
+            rigidbody.velocity = Vector2.zero;//기존속도제거
         }
     }
 }
