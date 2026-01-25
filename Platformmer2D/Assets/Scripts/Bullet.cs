@@ -7,8 +7,6 @@ public class Bullet : MonoBehaviour
     public float Range;
     Vector3 vStartPos;
     public Player master;
-    public Gun gun;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +24,6 @@ public class Bullet : MonoBehaviour
         if (fDist > Range)
         {
             Destroy(this.gameObject);
-            gun.nBulletCount++;
         }
     }
 

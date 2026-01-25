@@ -1764,7 +1764,7 @@ GameObject:
   - component: {fileID: 1412463740}
   - component: {fileID: 1412463739}
   - component: {fileID: 1412463738}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Lodder
   m_TagString: Lodder
   m_Icon: {fileID: 0}
@@ -2559,11 +2559,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1222952119788483206, guid: 6af01f739c24c0e4b9ca970f513c32ae,
-        type: 3}
-      propertyPath: nBulletCount
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 1222952120909994344, guid: 6af01f739c24c0e4b9ca970f513c32ae,
         type: 3}
       propertyPath: m_Name
