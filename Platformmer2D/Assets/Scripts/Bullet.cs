@@ -43,6 +43,7 @@ public class Bullet : MonoBehaviour
             if (superMode && superMode.isUes == false)
             {
                 me.Attack(target);
+                if (target.Death()) me.StillExp(target);
                 superMode.OnMode();
             }
         }
@@ -52,11 +53,17 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Monster")
         {
+            //GameObject objPlayer = GameObject.Find("player"); //검색을 이용했으므로 추천하지않음.
+            //GameObject objPlayer = GameManager.GetInstance().responnerPlayer.objPlayer; //싱글톤객체를 통해 바로 원하는 객체에 접근.
+            //master = objPlayer.GetComponent<Player>();
+
+
             Player target = collision.GetComponent<Player>();
             SuperMode superMode = target.GetComponent<SuperMode>();
             if (superMode && superMode.isUes == false)
             {
                 master.Attack(target);
+                if (target.Death()) master.StillExp(target);
                 superMode.OnMode();
             }
         }

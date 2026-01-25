@@ -49,15 +49,18 @@ public class Eagle : MonoBehaviour
 
     public void UpdatePatrol(GameObject objA, GameObject objB)
     {
-        if (isMove == false)
+        if (objTarget)
         {
-            if (objTarget.name == objA.name)
+            if (isMove == false)
             {
-                objTarget = objB;
-            }
-            else if (objTarget.name == objB.name)
-            {
-                objTarget = objA;
+                if (objTarget.name == objA.name)
+                {
+                    objTarget = objB;
+                }
+                else if (objTarget.name == objB.name)
+                {
+                    objTarget = objA;
+                }
             }
         }
     }
@@ -99,6 +102,7 @@ public class Eagle : MonoBehaviour
             if (superMode && superMode.isUes == false)
             {
                 me.Attack(target);
+                if (target.Death()) me.StillExp(target);
                 superMode.OnMode();
             }
         }

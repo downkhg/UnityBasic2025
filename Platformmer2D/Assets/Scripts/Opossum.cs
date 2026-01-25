@@ -38,6 +38,7 @@ public class Opossum : MonoBehaviour
             if (superMode && superMode.isUes == false)
             {
                 me.Attack(target);
+                if (target.Death()) me.StillExp(target);
                 superMode.OnMode();
             }
         }

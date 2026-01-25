@@ -4,13 +4,34 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int nHP = 100;
+    public int nHP = 10;
     public int nDemage = 10;
+
+    public int nExp;
+    public int nLv = 1;
+
+    public void LvUp()
+    {
+        if(nExp >= 100)
+        {
+            nHP += 10;
+            nDemage += 10;
+            nExp -= 100;
+            nLv++;
+        }
+    }
+
+    public void StillExp(Player target)
+    {
+        Debug.Log("StillExp:"+target.gameObject.name);
+        this.nExp += (target.nExp + target.nLv * 100);
+    }
 
     public void Attack(Player target)
     {
         target.nHP = target.nHP - this.nDemage;
     }
+
     public bool Death()
     {
         if (nHP > 0)
@@ -28,6 +49,7 @@ public class Player : MonoBehaviour
         GUI.Box(new Rect(vPos.x + (vSize.x * nDebugIdx), vPos.y + (vSize.y * nLine), vSize.x, vSize.y), "Name:" + gameObject.name); nLine++;
         GUI.Box(new Rect(vPos.x + (vSize.x * nDebugIdx), vPos.y + (vSize.y*nLine) , vSize.x, vSize.y), "HP:" + nHP); nLine++;
         GUI.Box(new Rect(vPos.x + (vSize.x * nDebugIdx), vPos.y + (vSize.y * nLine), vSize.x, vSize.y), "Demage:" + nDemage); nLine++;
+        GUI.Box(new Rect(vPos.x + (vSize.x * nDebugIdx), vPos.y + (vSize.y * nLine), vSize.x, vSize.y), "Lv/Exp:" + nLv + "/" + nExp); nLine++;
     }
 
     // Start is called before the first frame update
@@ -39,6 +61,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Death())
+            Destroy(this.gameObject);
+
+        LvUp();
     }
 }

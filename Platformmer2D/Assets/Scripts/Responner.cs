@@ -26,7 +26,7 @@ public class Responner : MonoBehaviour
 
     IEnumerator ProcessTimmer()
     {
-        Debug.Log("ProcessTimmer 1");
+        //Debug.Log("ProcessTimmer 1");
         isRespon = true;
         yield return new WaitForSeconds(Time);
         GameObject prefabPlayer = Resources.Load("Prefabs/"+strPrefabName) as GameObject;
@@ -37,6 +37,6 @@ public class Responner : MonoBehaviour
         //if(eagle)
         //    eagle.objResponPoint = this.gameObject;
         isRespon = false;
-        Debug.Log("ProcessTimmer 2");
+        //Debug.Log("ProcessTimmer 2");
     }
 }
