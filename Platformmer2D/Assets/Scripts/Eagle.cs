@@ -7,6 +7,7 @@ public class Eagle : MonoBehaviour
     public GameObject objTarget;
     public float Speed = 1;
     public float Site = 0.5f;
+    public GameObject objResponPoint;
 
     // Update is called once per frame
     void Update()
@@ -28,6 +29,9 @@ public class Eagle : MonoBehaviour
     {
         //UpdateFindTargetLayer();
         UpdateFindTargetLayerAll();
+
+        if (objTarget == null)
+            objTarget = objResponPoint;
     }
 
     void UpdateFindTargetLayer()

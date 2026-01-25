@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public Responner responnerPlayer;
     public Responner responnerOpossum;
+    public Responner responnerEagle;
 
     public float DeathZoneY = -1;
 
@@ -37,6 +38,18 @@ public class GameManager : MonoBehaviour
     {
         if(cameraTracker.objTarget == null)
             cameraTracker.objTarget = responnerPlayer.objPlayer;
+
+        UpdateEagleRetrunPointCheck();
+    }
+
+    private void UpdateEagleRetrunPointCheck()
+    {
+        if(responnerEagle.objPlayer)
+        {
+            Eagle eagle = responnerEagle.objPlayer.GetComponent<Eagle>();
+            if(eagle.objResponPoint ==null)
+                eagle.objResponPoint = responnerEagle.gameObject;
+        }
     }
 
     private void OnDrawGizmos()

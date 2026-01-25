@@ -257,6 +257,7 @@ MonoBehaviour:
   cameraTracker: {fileID: 339261007}
   responnerPlayer: {fileID: 87458608}
   responnerOpossum: {fileID: 1006249759}
+  responnerEagle: {fileID: 1422650459}
   DeathZoneY: -1
 --- !u!4 &244534227
 Transform:
@@ -2766,6 +2767,11 @@ PrefabInstance:
       propertyPath: objTarget
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5451512641011667751, guid: 206579e1990214c4897d1efadc509d13,
+        type: 3}
+      propertyPath: objResponPoint
+      value: 
+      objectReference: {fileID: 1422650458}
     m_RemovedComponents:
     - {fileID: 5451512641011667750, guid: 206579e1990214c4897d1efadc509d13, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 206579e1990214c4897d1efadc509d13, type: 3}
