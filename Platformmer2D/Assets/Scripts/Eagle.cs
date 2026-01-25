@@ -8,6 +8,22 @@ public class Eagle : MonoBehaviour
     public float Speed = 1;
     public float Site = 0.5f;
     public GameObject objResponPoint;
+    public GameObject objPatrolPoint;
+    public bool isMove;
+
+    public void UpdatePatrol(GameObject objA, GameObject objB)
+    {
+        if(objTarget.name == objA.name)
+        {
+            if (isMove == false)
+                objTarget = objB;
+        }
+        else if(objTarget.name == objB.name)
+        {
+            if (isMove == false)
+                objTarget = objA;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -21,8 +37,15 @@ public class Eagle : MonoBehaviour
             float fDist = vDist.magnitude;
 
             if (fDist > Speed * Time.deltaTime)
+            {
                 transform.position += vDir * Speed * Time.deltaTime;
+                isMove = true;
+            }
+            else
+                isMove = false;
         }
+
+        UpdatePatrol(objResponPoint, objPatrolPoint);
     }
 
     private void FixedUpdate()
