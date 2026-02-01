@@ -46,24 +46,52 @@ public class Dynamic : MonoBehaviour
         }
     }
 
+    public void Move(Vector3 dir)
+    {
+        transform.position += dir * Speed * Time.deltaTime;
+        //transform.Rotate(Vector3.up * 0);
+        transform.rotation = Quaternion.Euler(dir * 0);
+        this.dir = dir;
+    }
+
+    public void Jump()
+    {
+        if (isJump == false)
+        {
+            Rigidbody2D rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
+            rigidbody.gravityScale = 1;
+            rigidbody.velocity = Vector2.zero;//기존속도제거
+            rigidbody.AddForce(Vector3.up * JumpPower);
+            isJump = true;
+        }
+    }
+
+    public void Attack()
+    {
+        gun.Shot(dir, GetComponent<Player>());
+    }
+
     // Update is called once per frame
     void Update()
     {
+
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position += Vector3.right * Speed * Time.deltaTime;
-            //transform.Rotate(Vector3.up * 0);
-            transform.rotation = Quaternion.Euler(Vector3.up * 0);
-            dir = Vector3.right;
+            //transform.position += Vector3.right * Speed * Time.deltaTime;
+            ////transform.Rotate(Vector3.up * 0);
+            //transform.rotation = Quaternion.Euler(Vector3.up * 0);
+            //dir = Vector3.right;
+            Move(Vector3.right);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position += Vector3.left * Speed * Time.deltaTime;
-            //transform.Rotate(Vector3.up * 180);
-            transform.rotation = Quaternion.Euler(Vector3.up * 180);
-            dir = Vector3.left;
+            //transform.position += Vector3.left * Speed * Time.deltaTime;
+            ////transform.Rotate(Vector3.up * 180);
+            //transform.rotation = Quaternion.Euler(Vector3.up * 180);
+            //dir = Vector3.left;
+            Move(Vector3.left);
         }
-
         if (isLodder)
         {
             if (isTakeLodder)

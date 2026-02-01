@@ -130,6 +130,7 @@ MonoBehaviour:
     type: 3}
   trMozzle: {fileID: 1222952119531762651}
   ShotPower: 300
+  nBulletCount: 5
 --- !u!1 &1222952120909994344
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +147,7 @@ GameObject:
   - component: {fileID: 1256514473691559704}
   - component: {fileID: 4359232477344762855}
   - component: {fileID: 6010525002166970304}
+  - component: {fileID: 4772968120630751873}
   m_Layer: 8
   m_Name: player
   m_TagString: Player
@@ -322,3 +324,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isUes: 1
   Time: 1
+--- !u!114 &4772968120630751873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222952120909994344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d09f1d5473af44ab6c81fbc1375fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dynamic: {fileID: 1222952120909994357}
